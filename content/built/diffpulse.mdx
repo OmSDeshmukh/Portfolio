@@ -1,0 +1,28 @@
+---
+title: "Diffpulse"
+outcome: "Real-time code review assistant that cut review time by 40% across 3 teams"
+tags: ["TypeScript", "OpenAI", "GitHub API", "Next.js"]
+github: "https://github.com/omdeshmukh/diffpulse"
+live: ""
+date: "2024-03-01"
+---
+
+## The problem
+
+Code review at my team was slow. Not because people were lazy — because context-switching is expensive. A reviewer opens a PR, spends 5 minutes reconstructing what this code is even trying to do, then writes three comments and moves on. Half the important stuff gets missed.
+
+## What I did
+
+Built a GitHub App that hooks into PR events and uses an LLM to generate a structured review brief before any human touches the code. The brief answers: what changed, why it probably changed, what to look for, and which files matter most.
+
+It doesn't replace review. It removes the orientation phase so reviewers can start with opinions, not context reconstruction.
+
+Stack was Next.js for the dashboard, Vercel for deployment, GitHub Apps API for the webhook integration. Used streaming so the brief appears as it generates — waiting for a full LLM response on a 50-file PR felt wrong.
+
+## What I learned
+
+The hard part wasn't the LLM calls. It was prompt engineering for code diffs specifically — they're not natural language and models have strong priors about what "reviewing code" means that aren't always useful. Had to be very explicit about output format.
+
+Also learned that GitHub's webhook retry behavior is aggressive. If you don't respond within 10 seconds, they retry and you end up with duplicate briefs. Had to implement idempotency keys.
+
+40% reduction in review time was measured over 6 weeks across 3 teams. The number I'm more proud of: 0 production incidents attributed to missed review comments in that period, vs. 2 in the 6 weeks prior.

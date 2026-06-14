@@ -1,0 +1,30 @@
+---
+title: "Groundtruth"
+outcome: "Lightweight annotation tool for NLP datasets, used by 2 research labs"
+tags: ["Python", "FastAPI", "React", "SQLite"]
+github: "https://github.com/omdeshmukh/groundtruth"
+live: ""
+date: "2023-09-01"
+---
+
+## The problem
+
+I kept needing labeled data and every existing annotation tool was either (a) a SaaS with per-seat pricing that academic budgets can't handle, or (b) a local tool that required a PhD in configuration to run.
+
+I wanted something you could clone, run with `python app.py`, and be annotating in under 2 minutes.
+
+## What I did
+
+Built a minimal annotation tool focused on classification and NER tasks. FastAPI backend with SQLite (no Postgres setup required), React frontend with keyboard shortcuts for everything, and a simple CSV/JSONL export.
+
+Key design decision: no user authentication. If you're using this, you're a researcher running it locally. Auth adds complexity without adding value in that context.
+
+Added multi-annotator support later — you can assign tasks and compute inter-annotator agreement (Cohen's kappa) directly in the UI.
+
+## What I learned
+
+SQLite is underrated for tools like this. It's a single file, you can email your database, and for anything under 10GB it's fast enough that you'll never notice the difference from Postgres.
+
+The keyboard shortcut investment paid off enormously. Once annotators memorize 5 shortcuts, their throughput roughly doubles. Time spent on that UX detail had the highest ROI of anything in the project.
+
+Two labs ended up using it for unrelated projects, which was validating — it meant the scope was right.

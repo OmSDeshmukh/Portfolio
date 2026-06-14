@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background-color: #0e0e0e;
+    color: #e8e8e8;
+  }
+
+  * {
+    border-color: #262626;
+  }
+
+  ::selection {
+    background-color: #8b7cf830;
+    color: #e8e8e8;
+  }
+}
+
+@layer components {
+  .version-tag {
+    @apply font-mono text-xs text-muted tracking-wider;
+  }
+
+  .thin-border {
+    border-width: 0.5px;
+  }
+
+  .prose-custom {
+    @apply text-dim leading-relaxed;
+  }
+
+  .prose-custom h1,
+  .prose-custom h2,
+  .prose-custom h3 {
+    @apply text-text font-medium mt-8 mb-3;
+  }
+
+  .prose-custom p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose-custom a {
+    @apply text-accent underline underline-offset-2 hover:text-accent/80 transition-colors;
+  }
+
+  .prose-custom code {
+    @apply font-mono text-sm bg-surface px-1.5 py-0.5 rounded;
+  }
+
+  .prose-custom pre {
+    @apply bg-surface border border-border rounded p-4 overflow-x-auto my-6;
+  }
+
+  .prose-custom pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .prose-custom ul,
+  .prose-custom ol {
+    @apply ml-4 mb-4 space-y-1;
+  }
+
+  .prose-custom li {
+    @apply leading-relaxed;
+  }
+
+  .prose-custom blockquote {
+    @apply border-l-2 border-accent pl-4 italic text-muted my-6;
+  }
+}
